@@ -13,6 +13,7 @@ const char *disambiguate_inc(SourceFile *sourcefile);
 const char *disambiguate_m(SourceFile *sourcefile);
 const char *disambiguate_pp(SourceFile *sourcefile);
 const char *disambiguate_pro(SourceFile *sourcefile);
+const char *disambiguate_r(SourceFile *sourcefile);
 const char *disambiguate_st(SourceFile *sourcefile);
 %}
 struct DisambiguateFuncsMap { const char *key; const char* (*value)(SourceFile*); };
@@ -28,4 +29,5 @@ inc, disambiguate_inc
 m, disambiguate_m
 pp, disambiguate_pp
 pro, disambiguate_pro
+r, disambiguate_r
 st, disambiguate_st

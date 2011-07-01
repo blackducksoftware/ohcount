@@ -76,6 +76,12 @@ void test_detector_disambiguate_pro() {
   ASSERT_DETECT(LANG_MAKE, "qmake.pro");
 }
 
+void test_detector_disambiguate_r() {
+  ASSERT_DETECT(LANG_R, "foo_r.R");
+  ASSERT_DETECT(LANG_REBOL, "foo_rebol_lower.r");
+  ASSERT_DETECT(LANG_REBOL, "foo_rebol_upper.r");
+}
+
 void test_detector_fortran_fixedfree() {
   ASSERT_DETECT(LANG_FORTRANFIXED, "fortranfixed.f");
   ASSERT_DETECT(LANG_FORTRANFREE, "fortranfree.f");
@@ -105,7 +111,6 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_EIFFEL, "eiffel.e");
   ASSERT_DETECT(LANG_OCAML, "ocaml.ml");
   ASSERT_DETECT(LANG_STRATEGO, "stratego.str");
-  ASSERT_DETECT(LANG_R, "foo.R");
   ASSERT_DETECT(LANG_GLSL, "foo.glsl");
   ASSERT_DETECT(LANG_GLSL, "foo_glsl.vert");
   ASSERT_DETECT(LANG_GLSL, "foo_glsl.frag");
@@ -169,6 +174,7 @@ void all_detector_tests() {
   test_detector_disambiguate_m();
   test_detector_disambiguate_in();
   test_detector_disambiguate_pro();
+  test_detector_disambiguate_r();
   test_detector_fortran_fixedfree();
   test_detector_detect_polyglot();
   test_detector_upper_case_extensions();

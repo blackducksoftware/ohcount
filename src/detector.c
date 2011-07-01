@@ -706,6 +706,23 @@ const char *disambiguate_pro(SourceFile *sourcefile) {
 	return LANG_IDL_PVWAVE;
 }
 
+const char *disambiguate_r(SourceFile *sourcefile) {
+  char *contents = ohcount_sourcefile_get_contents(sourcefile);
+  char *eof = contents + ohcount_sourcefile_get_contents_size(sourcefile);
+
+  // Detect REBOL by looking for the occurence of "rebol" in the contents
+  // (case-insensitive). Correct REBOL scripts have a "REBOL [...]" header
+  // block.
+  char *needle = "rebol";
+  int len = strlen(needle);
+  for (; contents < eof - len; ++contents)
+    if (tolower(*contents) == *needle &&
+          !strncasecmp(contents, needle, len))
+      return LANG_REBOL;
+
+  return LANG_R;
+}
+
 const char *disambiguate_st(SourceFile *sourcefile) {
   char *p, *pe;
   int length;

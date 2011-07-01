@@ -75,6 +75,7 @@ pike, LANG_PIKE, "Pike", 0
 puppet, LANG_PUPPET, "Puppet", 0
 python, LANG_PYTHON, "Python", 0
 r, LANG_R, "R", 0
+rebol, LANG_REBOL, "REBOL", 0
 rexx, LANG_REXX, "rexx", 0
 rhtml, LANG_RHTML, "", 0
 ruby, LANG_RUBY, "Ruby", 0

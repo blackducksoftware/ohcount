@@ -65,6 +65,7 @@
 #include "../parsers/puppet.h"
 #include "../parsers/python.h"
 #include "../parsers/r.h"
+#include "../parsers/rebol.h"
 #include "../parsers/rexx.h"
 #include "../parsers/ruby.h"
 #include "../parsers/rhtml.h"
@@ -159,6 +160,7 @@ pike, parse_pike
 puppet, parse_puppet
 python, parse_python
 r, parse_r
+rebol, parse_rebol
 rexx, parse_rexx
 rhtml, parse_rhtml
 ruby, parse_ruby

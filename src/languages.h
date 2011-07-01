@@ -77,6 +77,7 @@
 #define LANG_PUPPET "puppet"
 #define LANG_PYTHON "python"
 #define LANG_R "r"
+#define LANG_REBOL "rebol"
 #define LANG_REXX "rexx"
 #define LANG_RHTML "rhtml"
 #define LANG_RUBY "ruby"

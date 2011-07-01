@@ -133,6 +133,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_puppet.h"
 #include "parsers/test_python.h"
 #include "parsers/test_r.h"
+#include "parsers/test_rebol.h"
 #include "parsers/test_rexx.h"
 #include "parsers/test_rhtml.h"
 #include "parsers/test_ruby.h"
@@ -307,6 +308,7 @@ void all_parser_tests() {
   all_pike_tests();
   all_python_tests();
   all_r_tests();
+  all_rebol_tests();
   all_rexx_tests();
   all_rhtml_tests();
   all_ruby_tests();
