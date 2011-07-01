@@ -98,6 +98,8 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_LISP, "core.lisp");
   ASSERT_DETECT(LANG_DMD, "foo.d");
   ASSERT_DETECT(LANG_VIM, "foo.vim");
+  ASSERT_DETECT(LANG_EC, "foo.ec");
+  ASSERT_DETECT(LANG_EC, "foo.eh");
   ASSERT_DETECT(LANG_EBUILD, "foo.ebuild");
   ASSERT_DETECT(LANG_EBUILD, "foo.eclass");
   ASSERT_DETECT(LANG_EXHERES, "foo.exheres-0");

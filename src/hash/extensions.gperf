@@ -51,7 +51,9 @@ doc, BINARY
 dylan, LANG_DYLAN
 e, LANG_EIFFEL
 ebuild, LANG_EBUILD
+ec, LANG_EC
 eclass, LANG_EBUILD
+eh, LANG_EC
 el, LANG_EMACSLISP
 erl, LANG_ERLANG
 exheres-0, LANG_EXHERES

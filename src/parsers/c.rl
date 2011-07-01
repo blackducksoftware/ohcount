@@ -222,6 +222,17 @@ void parse_cuda(char *buffer, int length, int count,
   C_LANG = ORIG_C_LANG;
 }
 
+const char *EC_LANG = LANG_EC;
+void parse_ec(char *buffer, int length, int count,
+              void (*callback) (const char *lang, const char *entity, int s,
+                                int e, void *udata),
+              void *userdata
+  ) {
+  C_LANG = EC_LANG;
+  parse_c(buffer, length, count, callback, userdata);
+  C_LANG = ORIG_C_LANG;
+}
+
 #endif
 
 /*****************************************************************************/
