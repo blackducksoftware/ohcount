@@ -1,4 +1,4 @@
-// c.rl written by Scott Lawrence <bytbox@gmail.com>
+// golang.rl written by Scott Lawrence <bytbox@gmail.com>
 
 /************************* Required for every parser *************************/
 #ifndef OHCOUNT_GOLANG_PARSER_H
