@@ -678,6 +678,12 @@ const char *disambiguate_m(SourceFile *sourcefile) {
 
 #include <pcre.h>
 
+// strnlen is not available on OS X, so we roll our own
+size_t mystrnlen(const char *begin, size_t maxlen) {
+  const char *end = memchr(begin, '\0', maxlen);
+  return end ? (end - begin) : maxlen;
+}
+
 const char *disambiguate_pp(SourceFile *sourcefile) {
 	char *p = ohcount_sourcefile_get_contents(sourcefile);
   char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
@@ -704,7 +710,7 @@ const char *disambiguate_pp(SourceFile *sourcefile) {
 
 		int rc;
 		int ovector[30];
-		rc = pcre_exec(re, NULL, p, strnlen(p, 100), 0, 0, ovector, 30);
+		rc = pcre_exec(re, NULL, p, mystrnlen(p, 100), 0, 0, ovector, 30);
 		if(rc > 0) {
 			return LANG_PUPPET;
 		}
