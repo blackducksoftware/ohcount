@@ -746,7 +746,7 @@ const char *disambiguate_r(SourceFile *sourcefile) {
   // block.
   char *needle = "rebol";
   int len = strlen(needle);
-  for (; contents < eof - len; ++contents)
+  for (; contents && contents < eof - len; ++contents)
     if (tolower(*contents) == *needle &&
           !strncasecmp(contents, needle, len))
       return LANG_REBOL;
