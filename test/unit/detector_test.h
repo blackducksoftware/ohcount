@@ -64,6 +64,11 @@ void test_detector_disambiguate_asx() {
   ASSERT_NODETECT("AdvancedStreamRedirector.asx");
 }
 
+void test_detector_disambiguate_def() {
+  ASSERT_DETECT(LANG_MODULA2, "sampleDef.def");
+  ASSERT_NODETECT("module-definition.def");
+}
+
 void test_detector_disambiguate_m() {
   ASSERT_DETECT(LANG_OBJECTIVE_C, "t1.m");
   ASSERT_DETECT(LANG_OBJECTIVE_C, "t2.m");
@@ -189,6 +194,7 @@ void test_detector_emacs_mode() {
 void all_detector_tests() {
   test_detector_smalltalk();
   test_detector_disambiguate_asx();
+  test_detector_disambiguate_def();
   test_detector_disambiguate_m();
   test_detector_disambiguate_in();
   test_detector_disambiguate_pl();

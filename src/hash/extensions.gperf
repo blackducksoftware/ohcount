@@ -48,7 +48,7 @@ cu, LANG_CUDA
 cxx, LANG_CPP
 d, LANG_DMD
 dat, BINARY
-def, LANG_MODULA2
+def, DISAMBIGUATE("def")
 di, LANG_DMD
 doc, BINARY
 dylan, LANG_DYLAN

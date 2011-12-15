@@ -7,6 +7,7 @@ const char *disambiguate_asx(SourceFile *sourcefile);
 const char *disambiguate_b(SourceFile *sourcefile);
 const char *disambiguate_basic(SourceFile *sourcefile);
 const char *disambiguate_cs(SourceFile *sourcefile);
+const char *disambiguate_def(SourceFile *sourcefile);
 const char *disambiguate_fortran(SourceFile *sourcefile);
 const char *disambiguate_h(SourceFile *sourcefile);
 const char *disambiguate_in(SourceFile *sourcefile);
@@ -25,6 +26,7 @@ asx, disambiguate_asx
 b, disambiguate_b
 basic, disambiguate_basic
 cs, disambiguate_cs
+def, disambiguate_def
 fortran, disambiguate_fortran
 h, disambiguate_h
 in, disambiguate_in

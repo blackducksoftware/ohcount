@@ -347,6 +347,31 @@ const char *disambiguate_cs(SourceFile *sourcefile) {
     return LANG_CSHARP;
 }
 
+const char *disambiguate_def(SourceFile *sourcefile) {
+  char *p = ohcount_sourcefile_get_contents(sourcefile);
+  char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
+  for (; p < eof; p++) {
+    switch (*p) {
+    case ' ':
+    case '\t':
+    case '\n':
+    case '\r':
+      break;
+    case '(':
+      if (p[1] == '*') // Modula-2 comment
+        return LANG_MODULA2;
+      return NULL;
+    case 'D':
+      if (strncmp(p, "DEFINITION", 10) == 0) // Modula-2 "DEFINITION MODULE"
+        return LANG_MODULA2;
+      return NULL;
+    default:
+      return NULL; // not Modula-2
+    }
+  }
+  return NULL; // only blanks
+}
+
 const char *disambiguate_fortran(SourceFile *sourcefile) {
   char *p, *pe;
 
