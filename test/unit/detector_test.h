@@ -86,6 +86,8 @@ void test_detector_disambiguate_pl() {
   ASSERT_DETECT(LANG_PERL, "foo_perl1.pl");
   ASSERT_DETECT(LANG_PERL, "foo_perl2.pl");
   ASSERT_DETECT(LANG_PROLOG, "foo_prolog1.pl");
+  ASSERT_DETECT(LANG_PERL, "perl_with_smiley.pl");
+  ASSERT_DETECT(LANG_PERL, "perl_shebang_prolog_body.pl");
 }
 
 void test_detector_disambiguate_pro() {

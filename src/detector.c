@@ -769,16 +769,23 @@ const char *disambiguate_pp(SourceFile *sourcefile) {
 }
 
 const char *disambiguate_pl(SourceFile *sourcefile) {
-  // Attempt to detect based on file contents.
 	char *contents = ohcount_sourcefile_get_contents(sourcefile);
-  if (contents && strstr(contents, "#!/usr/bin/perl"))
+  if (!contents)
+    return NULL;
+
+  // Check for a perl shebang on first line of file
+	const char *error;
+	int erroffset;
+	pcre *re = pcre_compile("#![^\\n]*perl", PCRE_CASELESS, &error, &erroffset, NULL);
+  if (pcre_exec(re, NULL, contents, mystrnlen(contents, 100), 0, PCRE_ANCHORED, NULL, 0) > -1)
     return LANG_PERL;
-  else if (contents && strstr(contents, "#!/usr/local/bin/perl"))
-    return LANG_PERL;
-  else if (contents && strstr(contents, ":-"))
+
+  // Check for prolog :- rules
+  if (strstr(contents, ":- ") || strstr(contents, ":-\n"))
     return LANG_PROLOG;
-  else
-    return LANG_PERL;
+
+  // Perl by default.
+  return LANG_PERL;
 }
 
 #define QMAKE_SOURCES_SPACE "SOURCES +="
