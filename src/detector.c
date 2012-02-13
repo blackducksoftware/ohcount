@@ -397,43 +397,76 @@ const char *disambiguate_def(SourceFile *sourcefile) {
 }
 
 const char *disambiguate_fortran(SourceFile *sourcefile) {
-  char *p, *pe;
+  char *p;
 
   p = ohcount_sourcefile_get_contents(sourcefile);
   char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
+
+  // Try the assumption of a fixed formatted source code, and return free
+  // format if anything opposes this assumption.
+  // Rules based on the Fortran standard, page 47:
+  // ftp://ftp.nag.co.uk/sc22wg5/N1801-N1850/N1830.pdf
   while (p < eof) {
-    if (*p == ' ' && p + 5 < eof) {
-      int i;
-      for (i = 1; i <= 5; i++)
-        if (!isdigit(*(p + i)) && *(p + i) != ' ')
-          return LANG_FORTRANFIXED; // definately not f77
-      // Possibly fixed (doesn't match /^\s*\d+\s*$/).
-      pe = p;
-      while (*pe == ' ' || *pe == '\t') pe++;
-      if (pe - p <= 5) {
-        if (!isdigit(*pe))
-          return LANG_FORTRANFIXED;
-        while (isdigit(*pe)) pe++;
-        while (*pe == ' ' || *pe == '\t') pe++;
-        if (*pe != '\r' && *pe != '\n' && pe - p == 5)
-          return LANG_FORTRANFIXED;
-      }
-    }
-    while (*p != '\r' && *p != '\n' && *p != '&' && p < eof) p++;
-    if (*p == '&') {
-      p++;
-      // Look for free-form continuation.
-      while (*p == ' ' || *p == '\t') p++;
-      if (*p == '\r' || *p == '\n') {
-        pe = p;
-        while (*pe == '\r' || *pe == '\n' || *pe == ' ' || *pe == '\t') pe++;
-        if (*pe == '&')
+    int i = 1;
+    int blanklabel;
+    // Process a single line; tabulators are not valid in Fortran code
+    // but some compilers accept them to skip the first 5 columns.
+    if (*p == ' ' || *p == '\t' || isdigit(*p)) {
+      // Only consider lines starting with a blank or digit
+      // (non-comment in fixed)
+      if (*p == '\t') i = 5;
+      blanklabel = (*p == ' ' || *p == '\t');
+      while (*p != '\r' && *p != '\n' && p < eof) {
+        p++; i++;
+        if (i <= 5) {
+          blanklabel = blanklabel && (*p == ' ');
+          if ( !isdigit(*p) && *p != ' ' && *p != '!')
+            // Non-digit, non-blank, non-comment character in the label field
+            // definetly not valid fixed formatted code!
+            return LANG_FORTRANFREE;
+        }
+        if ((i == 6) && !blanklabel && *p != ' ' && *p != '0')
+          // Fixed format continuation line with non-blank label field
+          // not allowed, assume free format:
           return LANG_FORTRANFREE;
+        // Ignore comments (a ! character in column 6 is a continuation in
+        // fixed form)
+        if (*p == '!' && i != 6) {
+          while (*p != '\r' && *p != '\n' && p < eof) p++;
+        } else {
+          // Ignore quotes
+          if (*p == '"') {
+            if (p < eof) {p++; i++;}
+            while (*p != '"' && *p != '\r' && *p != '\n' && p < eof) {
+              p++; i++;
+            }
+          }
+          if (*p == '\'') {
+            if (p < eof) {p++; i++;}
+            while (*p != '\'' && *p != '\r' && *p != '\n' && p < eof) {
+              p++; i++;
+            }
+          }
+          // Check for free format line continuation
+          if (i > 6 && i <= 72 && *p == '&')
+            // Found an unquoted free format continuation character in the fixed
+            // format code section. This has to be free format.
+            return LANG_FORTRANFREE;
+        }
       }
+    } else {
+      // Not a statement line in fixed format...
+      if (*p != 'C' && *p != 'c' && *p != '*' && *p != '!')
+        // Not a valid fixed form comment, has to be free formatted source
+        return LANG_FORTRANFREE;
+      // Comment in fixed form, ignore this line
+      while (*p != '\r' && *p != '\n' && p < eof) p++;
     }
-    while (*p == '\r' || *p == '\n') p++;
+    // Skip all line ends
+    while ((*p == '\r' || *p == '\n') && p < eof) p++;
   }
-  return LANG_FORTRANFREE; // might as well be free-form
+  // Assume fixed format if none of the lines broke the assumptions
+  return LANG_FORTRANFIXED;
 }
 
 const char *disambiguate_h(SourceFile *sourcefile) {

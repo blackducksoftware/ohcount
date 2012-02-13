@@ -63,11 +63,14 @@ exheres-0, LANG_EXHERES
 exlib, LANG_EXHERES
 f, DISAMBIGUATE("fortran")
 f03, DISAMBIGUATE("fortran")
+f08, DISAMBIGUATE("fortran")
 f77, DISAMBIGUATE("fortran")
 f90, DISAMBIGUATE("fortran")
 f95, DISAMBIGUATE("fortran")
 factor, LANG_FACTOR
 frag, LANG_GLSL
+for, DISAMBIGUATE("fortran")
+fpp, DISAMBIGUATE("fortran")
 frm, LANG_VISUALBASIC
 frx, LANG_VISUALBASIC
 fs, LANG_FSHARP
