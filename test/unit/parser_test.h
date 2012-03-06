@@ -102,6 +102,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_erlang.h"
 #include "parsers/test_exheres.h"
 #include "parsers/test_factor.h"
+#include "parsers/test_forth.h"
 #include "parsers/test_fortran.h"
 #include "parsers/test_fsharp.h"
 #include "parsers/test_glsl.h"
@@ -283,6 +284,7 @@ void all_parser_tests() {
   all_erlang_tests();
   all_exheres_tests();
   all_factor_tests();
+  all_forth_tests();
   all_fortran_tests();
   all_fsharp_tests();
   all_glsl_tests();

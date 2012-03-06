@@ -40,6 +40,7 @@
 #define LANG_EXHERES "exheres"
 #define LANG_EMACSLISP "emacslisp"
 #define LANG_FACTOR "factor"
+#define LANG_FORTH "forth"
 #define LANG_FORTRANFIXED "fortranfixed"
 #define LANG_FORTRANFREE "fortranfree"
 #define LANG_FSHARP "fsharp"

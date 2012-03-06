@@ -27,6 +27,7 @@
 #include "../parsers/erlang.h"
 #include "../parsers/exheres.h"
 #include "../parsers/factor.h"
+#include "../parsers/forth.h"
 #include "../parsers/fortranfixed.h"
 #include "../parsers/fortranfree.h"
 #include "../parsers/fsharp.h"
@@ -127,6 +128,7 @@ erlang, parse_erlang
 exheres, parse_exheres
 emacslisp, parse_emacslisp
 factor, parse_factor
+forth, parse_forth
 fortranfixed, parse_fortranfixed
 fortranfree, parse_fortranfree
 fsharp, parse_fsharp

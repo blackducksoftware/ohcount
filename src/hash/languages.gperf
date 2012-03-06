@@ -38,6 +38,7 @@ emacslisp, LANG_EMACSLISP, "Emacs lisp", 0
 erlang, LANG_ERLANG, "Erlang", 0
 exheres, LANG_EXHERES, "Exheres", 0
 factor, LANG_FACTOR, "Factor", 0
+forth, LANG_FORTH, "Forth", 0
 fortranfixed, LANG_FORTRANFIXED, "Fortan (Fixed-format)", 0
 fortranfree, LANG_FORTRANFREE, "Fortan (Free-format)", 0
 fsharp, LANG_FSHARP, "F#", 0

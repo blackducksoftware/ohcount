@@ -6,6 +6,7 @@
 %}
 struct ExtensionMap { const char *key; const char *value; };
 %%
+4th, LANG_FORTH
 C, LANG_CPP
 H, LANG_CPP
 ada, LANG_ADA
@@ -68,6 +69,7 @@ f77, DISAMBIGUATE("fortran")
 f90, DISAMBIGUATE("fortran")
 f95, DISAMBIGUATE("fortran")
 factor, LANG_FACTOR
+fr, LANG_FORTH
 frag, LANG_GLSL
 for, DISAMBIGUATE("fortran")
 fpp, DISAMBIGUATE("fortran")
