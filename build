@@ -96,7 +96,7 @@ build_ohcount()
   build_parser_o
   echo "Building Ohcount"
   mkdir -p bin/
-  sh -c "$cc src/ohcount.c $files -o bin/ohcount -lpcre" || exit 1
+  sh -c "$cc src/ohcount.c $files -o bin/ohcount -lpcre -lmagic" || exit 1
 }
 
 build_test_suite()
@@ -104,7 +104,7 @@ build_test_suite()
   build_hash_headers
   build_parser_o
   echo "Building test suite"
-  sh -c "$cc test/unit/all_tests.c $files -o test/unit/run_tests -lpcre" \
+  sh -c "$cc test/unit/all_tests.c $files -o test/unit/run_tests -lpcre -lmagic" \
     || exit 1
 }
 
@@ -121,7 +121,7 @@ build_ruby_bindings()
 	mkdir -p ruby/$arch
   sh -c "$cc $RB_SHARED ruby/ohcount_wrap.c $files -o ruby/$arch/$RB_SHARED_NAME \
     -I`ruby -rmkmf -e 'print Config::expand(CONFIG["archdir"])'` \
-    -lpcre" || exit 1
+    -lpcre -lmagic" || exit 1
   sh -c "cd test/unit/ruby && ruby ruby_test.rb" || exit 1
 }
 

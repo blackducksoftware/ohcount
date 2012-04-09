@@ -2,6 +2,7 @@
 // See COPYING for license information.
 
 #include <ctype.h>
+#include <magic.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,25 +26,94 @@
 # define mkstemp(p) _open(_mktemp(p), _O_CREAT | _O_SHORT_LIVED | _O_EXCL)
 #endif
 
-/* Replaces single quotes (') with an escape sequence ('\'')
- * suitable for use on the command line.
+/* Parse the output of libmagic and return a language, if any.
+ * The contents of string `line` will be destroyed.
  */
-void escape_path(char *safe, const char *unsafe) {
-  do {
-    switch (*unsafe) {
-    case  '\'':
-      *safe++ = '\'';
-      *safe++ = '\\';
-      *safe++ = '\'';
-      *safe++ = '\'';
-      break;
-    default:
-      *safe++ = *unsafe;
-      break;
+const char *magic_parse(char *line) {
+  char *p, *pe;
+  char *eol = line + strlen(line);
+
+  char buf[80];
+  size_t length;
+
+  for (p = line; p < eol; p++) *p = tolower(*p);
+  p = strstr(line, "script text");
+  if (p && p == line) { // /^script text(?: executable)? for \w/
+    p = strstr(line, "for ");
+    if (p) {
+      p += 4;
+      pe = p;
+      while (isalnum(*pe)) pe++;
+      length = pe - p;
+      strncpy(buf, p, length);
+      buf[length] = '\0';
+      struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
+      if (rl) return(rl->name);
     }
-  } while (*unsafe++);
+  } else if (p) { // /(\w+)(?: -\w+)* script text/
+    do {
+      p--;
+      pe = p;
+      while (*p == ' ') p--;
+      while (p != line && isalnum(*(p - 1))) p--;
+      if (p != line && *(p - 1) == '-') p--;
+    } while (*p == '-'); // Skip over any switches.
+    length = pe - p;
+    strncpy(buf, p, length);
+    buf[length] = '\0';
+    struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
+    if (rl) return(rl->name);
+  } else if (strstr(line, "xml")) return(LANG_XML);
+
+  return NULL;
 }
 
+/* Use libmagic to detect file language
+ */
+const char *detect_language_magic(SourceFile *sourcefile) {
+  char line[80];
+
+  magic_t cookie = magic_open(MAGIC_NONE);
+  if (cookie == NULL) {
+    fprintf(stderr, "libmagic: %s\n", magic_error(cookie));
+    exit(1);
+  }
+  if (magic_load(cookie, NULL) != 0) {
+    fprintf(stderr, "libmagic: %s\n", magic_error(cookie));
+    magic_close(cookie);
+    exit(1);
+  }
+
+  if (sourcefile->diskpath) {
+    const char *magic = magic_file(cookie, sourcefile->diskpath);
+    if (magic == NULL) {
+      fprintf(stderr, "libmagic: %s\n", magic_error(cookie));
+      magic_close(cookie);
+      exit(1);
+    }
+    strncpy(line, magic, sizeof(line));
+    line[sizeof(line)-1] = '\0';
+  } else {
+    char *p = ohcount_sourcefile_get_contents(sourcefile);
+    if (!p) return NULL;
+
+    const char *magic = magic_buffer(cookie, p, strlen(p));
+    if (magic == NULL) {
+      fprintf(stderr, "libmagic: %s\n", magic_error(cookie));
+      magic_close(cookie);
+      exit(1);
+    }
+    strncpy(line, magic, sizeof(line));
+    line[sizeof(line)-1] = '\0';
+  }
+
+  magic_close(cookie);
+
+  return magic_parse(line);
+}
+
+/* Use all available means to detect file language
+ */
 const char *ohcount_detect_language(SourceFile *sourcefile) {
   const char *language = NULL;
   char *p, *pe;
@@ -135,74 +205,9 @@ const char *ohcount_detect_language(SourceFile *sourcefile) {
 
   // Attempt to detect based on Unix 'file' command.
   if(!language) {
-    int tmpfile = 0;
-    char *path = sourcefile->filepath;
-    if (sourcefile->diskpath)
-      path = sourcefile->diskpath;
-    if (access(path, F_OK) != 0) { // create temporary file
-      path = malloc(21);
-      strncpy(path, "/tmp/ohcount_XXXXXXX\0", 21);
-      int fd = mkstemp(path);
-      char *contents = ohcount_sourcefile_get_contents(sourcefile);
-      log_it("contents:");
-      log_it(contents);
-      length = contents ? strlen(contents) : 0;
-      if (write(fd, contents, length) != length) {
-        fprintf(stderr, "src/detector.c: Could not write temporary file %s.\n", path);
-        exit(1);
-      }
-      close(fd);
-      tmpfile = 1;
-    }
-
-    /* Filenames may include single quotes, which must be escaped */
-    char escaped_path[strlen(path) * 4 + 1];
-    escape_path(escaped_path, path);
-
-    char command[strlen(escaped_path) + 11];
-    sprintf(command, "file -b '%s'", escaped_path);
-    FILE *f = popen(command, "r");
-    if (f) {
-      if (fgets(line, sizeof(line), f) == NULL) {
-        fprintf(stderr, "src/detector.c: fgets() failed\n");
-        exit(1);
-      }
-      char *eol = line + strlen(line);
-      for (p = line; p < eol; p++) *p = tolower(*p);
-      p = strstr(line, "script text");
-      if (p && p == line) { // /^script text(?: executable)? for \w/
-        p = strstr(line, "for ");
-        if (p) {
-          p += 4;
-          pe = p;
-          while (isalnum(*pe)) pe++;
-          length = pe - p;
-          strncpy(buf, p, length);
-          buf[length] = '\0';
-          struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
-          if (rl) language = rl->name;
-        }
-      } else if (p) { // /(\w+)(?: -\w+)* script text/
-        do {
-          p--;
-          pe = p;
-          while (*p == ' ') p--;
-          while (p != line && isalnum(*(p - 1))) p--;
-          if (p != line && *(p - 1) == '-') p--;
-        } while (*p == '-'); // Skip over any switches.
-        length = pe - p;
-        strncpy(buf, p, length);
-        buf[length] = '\0';
-        struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
-        if (rl) language = rl->name;
-      } else if (strstr(line, "xml")) language = LANG_XML;
-      pclose(f);
-      if (tmpfile) {
-        remove(path);
-        free(path);
-      }
-    }
+    language = detect_language_magic(sourcefile);
   }
+
   if (language) {
     if (ISAMBIGUOUS(language)) {
       // Call the appropriate function for disambiguation.
@@ -579,15 +584,19 @@ const char *disambiguate_in(SourceFile *sourcefile) {
     char buf[length];
     strncpy(buf, p, length);
     buf[length] = '\0';
-    SourceFile *undecorated = ohcount_sourcefile_new(buf);
     p = ohcount_sourcefile_get_contents(sourcefile);
 		if (!p) {
 			return NULL;
 		}
-    // The filepath without the '.in' extension does not exist on disk. The
-    // sourcefile->diskpath field must be set incase the detector needs to run
-    // 'file -b' on the file.
-    ohcount_sourcefile_set_diskpath(undecorated, sourcefile->filepath);
+
+    // A SourceFile's filepath and diskpath need not be the same.
+    // Here, we'll take advantage of this to set up a new SourceFile
+    // whose filepath does not have the *.in extension, but whose
+    // diskpath still points back to the original file on disk (if any).
+    SourceFile *undecorated = ohcount_sourcefile_new(buf);
+    if (sourcefile->diskpath) {
+      ohcount_sourcefile_set_diskpath(undecorated, sourcefile->diskpath);
+    }
     ohcount_sourcefile_set_contents(undecorated, p);
 		undecorated->filenames = sourcefile->filenames;
     language = ohcount_sourcefile_get_language(undecorated);

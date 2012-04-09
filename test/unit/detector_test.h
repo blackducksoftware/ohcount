@@ -80,6 +80,7 @@ void test_detector_disambiguate_m() {
 
 void test_detector_disambiguate_in() {
   ASSERT_NODETECT("empty.in");
+  ASSERT_NODETECT("foo.in.in");
 }
 
 void test_detector_disambiguate_pl() {
@@ -195,24 +196,7 @@ void test_detector_emacs_mode() {
 	ASSERT_DETECT(LANG_C, "emacs_mode.c");
 }
 
-void test_detector_escape_path() {
-  char escaped[100];
-
-  escape_path(escaped, "");
-  assert(strcmp(escaped, "") == 0);
-
-  escape_path(escaped, "hello.c");
-  assert(strcmp(escaped, "hello.c") == 0);
-
-  escape_path(escaped, "'");
-  assert(strcmp(escaped, "\'\\\'\'") == 0);
-
-  escape_path(escaped, "Robin's 'Fancy' Filename");
-  assert(strcmp(escaped, "Robin\'\\\'\'s \'\\\'\'Fancy\'\\\'\' Filename") == 0);
-}
-
 void all_detector_tests() {
-  test_detector_escape_path();
   test_detector_smalltalk();
   test_detector_disambiguate_asx();
   test_detector_disambiguate_def();

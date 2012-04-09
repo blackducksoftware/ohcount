@@ -63,7 +63,8 @@ Ohcount source code is available as a Git repository:
 Building Ohcount
 ----------------
 
-You will need ragel 6.3 or higher, bash, pcre, gcc (version 4.1.2 or greater) and SWIG to build ohcount. Once you have them, go to the top directory of ohcount and run
+You will need ragel 6.3 or higher, bash, pcre, magic, gcc (version 4.1.2 or greater)
+and SWIG. Once you have them, go to the top directory of ohcount and run
 
 ```
 ./build
