@@ -44,6 +44,7 @@ forth, LANG_FORTH, "Forth", 0
 fortranfixed, LANG_FORTRANFIXED, "Fortan (Fixed-format)", 0
 fortranfree, LANG_FORTRANFREE, "Fortan (Free-format)", 0
 fsharp, LANG_FSHARP, "F#", 0
+genie, LANG_GENIE, "Genie", 0
 glsl, LANG_GLSL, "OpenGL Shading Language", 0
 golang, LANG_GOLANG, "Golang", 0
 groovy, LANG_GROOVY, "Groovy", 0

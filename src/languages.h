@@ -45,6 +45,7 @@
 #define LANG_FORTRANFIXED "fortranfixed"
 #define LANG_FORTRANFREE "fortranfree"
 #define LANG_FSHARP "fsharp"
+#define LANG_GENIE "genie"
 #define LANG_GLSL "glsl"
 #define LANG_GOLANG "golang"
 #define LANG_GROOVY "groovy"
