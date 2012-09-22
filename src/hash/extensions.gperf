@@ -194,7 +194,7 @@ svg, BINARY
 svgz, BINARY
 svn, BINARY
 swf, BINARY
-t, LANG_PERL
+t, DISAMBIGUATE("t")
 tar, BINARY
 tcl, LANG_TCL
 tex, LANG_TEX
