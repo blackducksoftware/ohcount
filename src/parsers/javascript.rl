@@ -146,4 +146,16 @@ void parse_qml(char *buffer, int length, int count,
   JS_LANG = ORIG_JS_LANG;
 }
 
+const char *JSON_LANG = LANG_JSON;
+const char *ORIG_JS_LANG = LANG_JAVASCRIPT;
+void parse_json(char *buffer, int length, int count,
+               void (*callback) (const char *lang, const char *entity,
+                                 int s, int e, void *udata),
+               void *userdata
+  ) {
+  JS_LANG = JSON_LANG;
+  parse_javascript(buffer, length, count, callback, userdata);
+  JS_LANG = ORIG_JS_LANG;
+}
+
 #endif

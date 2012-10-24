@@ -107,6 +107,7 @@ java, LANG_JAVA
 jpeg, BINARY
 jpg, BINARY
 js, LANG_JAVASCRIPT
+json, LANG_JSON
 jsp, LANG_JSP
 kdebuild-1, LANG_EBUILD
 latex, LANG_TEX

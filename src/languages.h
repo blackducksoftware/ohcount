@@ -57,6 +57,7 @@
 #define LANG_JAVA "java"
 #define LANG_JAVASCRIPT "javascript"
 #define LANG_JSP "jsp"
+#define LANG_JSON "json"
 #define LANG_LIMBO "limbo"
 #define LANG_LISP "lisp"
 #define LANG_LOGTALK "logtalk"

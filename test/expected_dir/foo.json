@@ -1,0 +1,21 @@
+json    code    {
+json    code	        "firstName": "John",
+json    code    	"lastName": "Smith",
+json    code	        "age": 25,
+json    code    	"address": {
+json    code	        	"streetAddress": "21 2nd Street",
+json    code		        "city": "New York",
+json    code    		"state": "NY",
+json    code	        	"postalCode": "10021"
+json    code    	},
+json    code	        "phoneNumber": [
+json    code		        {
+json    code			        "type": "home",
+json    code    			"number": "212 555-1234"
+json    code	        	},
+json    code		        {
+json    code    			"type": "fax",
+json    code	        		"number": "646 555-4567"
+json    code		        }
+json    code    	]
+json    code    }

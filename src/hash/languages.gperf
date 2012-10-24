@@ -56,6 +56,7 @@ jam, LANG_JAM, "Jam", 2
 java, LANG_JAVA, "Java", 0
 javascript, LANG_JAVASCRIPT, "JavaScript", 0
 jsp, LANG_JSP, "", 0
+json, LANG_JSON, "JSON", 1
 limbo, LANG_LIMBO, "Limbo", 0
 lisp, LANG_LISP, "Lisp", 0
 logtalk, LANG_LOGTALK, "Logtalk", 0

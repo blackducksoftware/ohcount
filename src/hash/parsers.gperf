@@ -146,6 +146,7 @@ idl_pvwave, parse_idl_pvwave
 jam, parse_jam
 java, parse_java
 javascript, parse_javascript
+json, parse_json
 jsp, parse_jsp
 lisp, parse_lisp
 limbo, parse_limbo
