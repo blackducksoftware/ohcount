@@ -18,6 +18,7 @@
 #include "../parsers/clearsilverhtml.h"
 #include "../parsers/coffeescript.h"
 #include "../parsers/cmake.h"
+#include "../parsers/coq.h"
 #include "../parsers/cs_aspx.h"
 #include "../parsers/css.h"
 #include "../parsers/d.h"
@@ -116,6 +117,7 @@ clearsilver, parse_clearsilver
 clearsilver_template, parse_cshtml
 clojure, parse_clojure
 coffeescript, parse_coffeescript
+coq, parse_coq
 cpp, parse_cpp
 cs_aspx, parse_cs_aspx
 csharp, parse_csharp

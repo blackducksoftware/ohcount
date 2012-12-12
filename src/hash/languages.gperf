@@ -24,6 +24,7 @@ clearsilver_template, LANG_CLEARSILVER_TEMPLATE, "ClearSilver", 0
 clojure, LANG_CLOJURE, "Clojure", 0
 cmake, LANG_CMAKE, "Cmake script", 2
 coffescript, LANG_COFFEESCRIPT, "CoffeeScript", 0
+coq, LANG_COQ, "Coq", 0
 cpp, LANG_CPP, "C++", 0
 cs_aspx, LANG_CS_ASPX, "", 0
 csharp, LANG_CSHARP, "C#", 0
