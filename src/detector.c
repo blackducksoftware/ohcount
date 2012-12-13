@@ -797,7 +797,7 @@ const char *disambiguate_pp(SourceFile *sourcefile) {
 
 	/* check for standard puppet constructs */
 	pcre *construct;
-	construct = pcre_compile("^\\s*(define\\s+[\\w:-]+\\s*\\(|class\\s+[\\w:-]+(\\s+inherits\\s+[\\w:-]+)?\\s*{|node\\s+\\'?[\\w:\\.-]+\\'?\\s*{)",
+	construct = pcre_compile("^\\s*(define\\s+[\\w:-]+\\s*\\(|class\\s+[\\w:-]+(\\s+inherits\\s+[\\w:-]+)?\\s*{|node\\s+\\'?[\\w:\\.-]+\\'?\\s*{|import\\s+\")",
 			PCRE_MULTILINE, &error, &erroffset, NULL);
 
 	if (pcre_exec(construct, NULL, p, mystrnlen(p, 10000), 0, 0, NULL, 0) > -1)
