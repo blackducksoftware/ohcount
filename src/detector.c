@@ -907,15 +907,16 @@ const char *disambiguate_st(SourceFile *sourcefile) {
 }
 
 const char *disambiguate_tpl(SourceFile *sourcefile) {
-        char *contents = ohcount_sourcefile_get_contents(sourcefile);
+  char *contents = ohcount_sourcefile_get_contents(sourcefile);
   if (!contents)
     return NULL;
 
-  // Check for a template definition on first line of file
-        const char *error;
-        int erroffset;
-        pcre *re = pcre_compile("[a-z]* ?template .*;", PCRE_CASELESS, &error, &erroffset, NULL);
-  if (pcre_exec(re, NULL, contents, mystrnlen(contents, 100), 0, PCRE_ANCHORED, NULL, 0) > -1)
+  // Check for a template definition at the start of the file
+  const char *error;
+  int erroffset;
+  pcre *re = pcre_compile("^\\s*(object|structure|unique|declaration)?\\s+template\\s+", PCRE_MULTILINE, &error, &erroffset, NULL);
+
+  if (pcre_exec(re, NULL, contents, mystrnlen(contents, 1000), 0, 0, NULL, 0) > -1)
     return LANG_PAN;
 
   // HTML by default.
