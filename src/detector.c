@@ -906,6 +906,22 @@ const char *disambiguate_st(SourceFile *sourcefile) {
   return NULL;
 }
 
+const char *disambiguate_tpl(SourceFile *sourcefile) {
+        char *contents = ohcount_sourcefile_get_contents(sourcefile);
+  if (!contents)
+    return NULL;
+
+  // Check for a template definition on first line of file
+        const char *error;
+        int erroffset;
+        pcre *re = pcre_compile("[a-z]* ?template .*;", PCRE_CASELESS, &error, &erroffset, NULL);
+  if (pcre_exec(re, NULL, contents, mystrnlen(contents, 100), 0, PCRE_ANCHORED, NULL, 0) > -1)
+    return LANG_PAN;
+
+  // HTML by default.
+  return LANG_HTML;
+}
+
 int ohcount_is_binary_filename(const char *filename) {
   char *p = (char *)filename + strlen(filename);
   while (p > filename && *(p - 1) != '.') p--;
