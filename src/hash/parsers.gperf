@@ -64,6 +64,7 @@
 #include "../parsers/objective_j.h"
 #include "../parsers/ocaml.h"
 #include "../parsers/octave.h"
+#include "../parsers/pan.h"
 #include "../parsers/pascal.h"
 #include "../parsers/perl.h"
 #include "../parsers/phphtml.h"
@@ -168,6 +169,7 @@ objective_c, parse_objective_c
 objective_j, parse_objective_j
 ocaml, parse_ocaml
 octave, parse_octave
+pan, parse_pan
 pascal, parse_pascal
 perl, parse_perl
 php, parse_phtml
