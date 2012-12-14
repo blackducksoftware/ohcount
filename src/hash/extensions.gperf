@@ -141,6 +141,7 @@ ob2, LANG_OBERON
 obn, LANG_OBERON
 ogg, BINARY
 p6, LANG_PERL
+pan, LANG_PAN
 pas, LANG_PASCAL
 perl, LANG_PERL
 pdf, BINARY
@@ -202,7 +203,7 @@ tex, LANG_TEX
 tgz, BINARY
 tif, BINARY
 tiff, BINARY
-tpl, LANG_HTML
+tpl, DISAMBIGUATE("tpl")
 vala, LANG_VALA
 vapi, LANG_VALA
 v, LANG_COQ

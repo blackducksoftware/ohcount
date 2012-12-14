@@ -78,6 +78,7 @@
 #define LANG_OBJECTIVE_J "objective_j"
 #define LANG_OCAML "ocaml"
 #define LANG_OCTAVE "octave"
+#define LANG_PAN "pan"
 #define LANG_PASCAL "pascal"
 #define LANG_PERL "perl"
 #define LANG_PHP "php"
