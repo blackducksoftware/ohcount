@@ -132,6 +132,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_objective_j.h"
 #include "parsers/test_ocaml.h"
 #include "parsers/test_octave.h"
+#include "parsers/test_pan.h"
 #include "parsers/test_pascal.h"
 #include "parsers/test_perl.h"
 #include "parsers/test_pike.h"
@@ -315,6 +316,7 @@ void all_parser_tests() {
   all_objective_j_tests();
   all_ocaml_tests();
   all_octave_tests();
+  all_pan_tests();
   all_pascal_tests();
   all_perl_tests();
   all_pike_tests();

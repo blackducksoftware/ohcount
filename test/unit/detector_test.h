@@ -210,6 +210,13 @@ void test_non_existent_file(){
   ASSERT_NODETECT("xxx_non_exists_xxxi.pp");  
 }
 
+void test_detector_pan(){
+  ASSERT_DETECT(LANG_PAN, "pan.tpl");
+  ASSERT_DETECT(LANG_PAN, "pan.pan");
+  // Ensure that smarty templates are still detected as HTML
+  ASSERT_DETECT(LANG_HTML, "smarty.tpl");
+}
+
 void all_detector_tests() {
   test_detector_smalltalk();
   test_detector_disambiguate_asx();
@@ -228,5 +235,6 @@ void all_detector_tests() {
   test_detector_xml_with_custom_extension();
   test_detector_brainfuck();
   test_detector_emacs_mode();
+  test_detector_pan();
   test_non_existent_file();
 }
