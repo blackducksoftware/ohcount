@@ -1,3 +1,12 @@
+  # Some
+
+# Nasty
+	#Comment
+    
+#formatting
+	
+# to break things
+
 object template pantest;
 
 # Very simple pan test file
