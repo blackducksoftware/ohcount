@@ -907,17 +907,45 @@ const char *disambiguate_st(SourceFile *sourcefile) {
 }
 
 const char *disambiguate_tpl(SourceFile *sourcefile) {
-  char *contents = ohcount_sourcefile_get_contents(sourcefile);
-  if (!contents)
-    return NULL;
+  char *p, *pe;
+  int length;
 
-  // Check for a template definition at the start of the file
+  char line[81];
+  p = ohcount_sourcefile_get_contents(sourcefile);
+  pe = p;
+  char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
+
   const char *error;
   int erroffset;
-  pcre *re = pcre_compile("^\\s*(object|structure|unique|declaration)?\\s+template\\s+", PCRE_MULTILINE, &error, &erroffset, NULL);
+  pcre *re_comment = pcre_compile("^\\s*(#.*)?$", 0, &error, &erroffset, NULL);
+  pcre *re_template = pcre_compile("^\\s*((object|structure|unique|declaration)\\s+)?template\\s+", 0, &error, &erroffset, NULL);
 
-  if (pcre_exec(re, NULL, contents, mystrnlen(contents, 1000), 0, 0, NULL, 0) > -1)
-    return LANG_PAN;
+  // To be a valid Pan file the first non-blank, non-comment line must be a template declaration.
+  while (pe < eof) {
+    // Get a line at a time.
+    while (pe < eof && *pe != '\r' && *pe != '\n') pe++;
+    length = (pe - p <= sizeof(line)) ? pe - p : sizeof(line);
+    strncpy(line, p, length);
+    line[length] = '\0';
+    char *line_end = pe;
+
+    p = line;
+
+    if (pcre_exec(re_template, NULL, p, mystrnlen(p, 1000), 0, 0, NULL, 0) > -1)
+      // Pan template declaration found
+      return LANG_PAN;
+
+    if (pcre_exec(re_comment, NULL, p, mystrnlen(p, 1000), 0, 0, NULL, 0) > -1) {
+      // Whitespace or valid pan comment, continue...
+      pe = line_end;
+      while (*pe == '\r' || *pe == '\n') pe++;
+      p = pe;
+    }
+    else {
+      // Consider everything else to be HTML
+      return LANG_HTML;
+    }
+  }
 
   // HTML by default.
   return LANG_HTML;
