@@ -11,6 +11,7 @@
 {* this multiline smarty
    comment is
    not sent to browser
+   object template to test disambiguation of Smarty vs Pan.
 *}
 
 {*********************************************************
@@ -19,6 +20,7 @@ Multi line comment block with credits block
   @ maintainer:     support@example.com
   @ para:           var that sets block style
   @ css:            the style output
+  object template to test disambiguation of Smarty vs Pan;
 **********************************************************}
 
 {* The header file with the main logo and stuff  *}
