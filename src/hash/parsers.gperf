@@ -75,6 +75,7 @@
 #include "../parsers/rebol.h"
 #include "../parsers/rexx.h"
 #include "../parsers/ruby.h"
+#include "../parsers/rust.h"
 #include "../parsers/rhtml.h"
 #include "../parsers/scala.h"
 #include "../parsers/scilab.h"
@@ -183,6 +184,7 @@ rebol, parse_rebol
 rexx, parse_rexx
 rhtml, parse_rhtml
 ruby, parse_ruby
+rust, parse_rust
 scala, parse_scala
 scheme, parse_scheme
 scilab, parse_scilab

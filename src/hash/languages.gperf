@@ -91,6 +91,7 @@ rebol, LANG_REBOL, "REBOL", 0
 rexx, LANG_REXX, "rexx", 0
 rhtml, LANG_RHTML, "", 0
 ruby, LANG_RUBY, "Ruby", 0
+rust, LANG_RUST, "Rust", 0
 scala, LANG_SCALA, "Scala", 0
 scheme, LANG_SCHEME, "Scheme", 0
 scilab, LANG_SCILAB, "Scilab", 0
