@@ -50,7 +50,10 @@ const char *magic_parse(char *line) {
       struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
       if (rl) return(rl->name);
     }
-  } else if (p) { // /(\w+)(?: -\w+)* script text/
+    return NULL;
+  }
+  p = strstr(line, "script");
+  if (p) { // /(\w+)(?: -\w+)* script(?: text)?/
     do {
       p--;
       pe = p;
