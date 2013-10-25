@@ -5,6 +5,7 @@ struct LanguageMap;
 %%
 actionscript, LANG_ACTIONSCRIPT, "ActionScript", 0
 ada, LANG_ADA, "Ada", 0
+ampl, LANG_AMPL, "AMPL", 0
 assembler, LANG_ASSEMBLER, "Assembler", 0
 augeas, LANG_AUGEAS, "Augeas", 0
 autoconf, LANG_AUTOCONF, "Autoconf", 2

@@ -8,6 +8,7 @@
 
 #define LANG_ACTIONSCRIPT "actionscript"
 #define LANG_ADA "ada"
+#define LANG_AMPL "ampl"
 #define LANG_ASSEMBLER "assembler"
 #define LANG_AUGEAS "augeas"
 #define LANG_AUTOCONF "autoconf"

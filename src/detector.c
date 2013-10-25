@@ -376,6 +376,41 @@ const char *disambiguate_cs(SourceFile *sourcefile) {
     return LANG_CSHARP;
 }
 
+const char *disambiguate_dat(SourceFile *sourcefile) {
+  char *p = ohcount_sourcefile_get_contents(sourcefile);
+  char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
+  for (; p < eof; p++) {
+    switch (*p) {
+    case ' ':
+    case '\t':
+    case '\n':
+    case '\r':
+      break;
+    case '/':
+      if (p[1] == '*') // AMPL comment
+        return LANG_AMPL;
+      return NULL;
+    case '#':
+      return LANG_AMPL; // AMPL comment
+    case 'd':
+      if (strncmp(p, "data", 4) == 0) // AMPL data statement
+        return LANG_AMPL;
+      return BINARY;
+    case 'p':
+      if (strncmp(p, "param", 5) == 0) // AMPL param statement
+        return LANG_AMPL;
+      return BINARY;
+    case 's':
+      if (strncmp(p, "set", 3) == 0) // AMPL set statement
+        return LANG_AMPL;
+      return BINARY;
+    default:
+      return BINARY;
+    }
+  }
+  return NULL; // only blanks
+}
+
 const char *disambiguate_def(SourceFile *sourcefile) {
   char *p = ohcount_sourcefile_get_contents(sourcefile);
   char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
@@ -765,6 +800,35 @@ const char *disambiguate_m(SourceFile *sourcefile) {
     return LANG_OBJECTIVE_C;
   else
     return octave_syntax_detected ? LANG_OCTAVE : LANG_MATLAB;
+}
+
+const char *disambiguate_mod(SourceFile *sourcefile) {
+  char *p = ohcount_sourcefile_get_contents(sourcefile);
+  char *eof = p + ohcount_sourcefile_get_contents_size(sourcefile);
+  for (; p < eof; p++) {
+    switch (*p) {
+    case ' ':
+    case '\t':
+    case '\n':
+    case '\r':
+      break;
+    case '(':
+      if (p[1] == '*') // Modula-2 comment
+        return LANG_MODULA2;
+      return NULL;
+    case 'I':
+      if (strncmp(p, "IMPLEMENTATION", 14) == 0) // Modula-2 "IMPLEMENTATION MODULE"
+        return LANG_MODULA2;
+      return NULL;
+    case 'M':
+      if (strncmp(p, "MODULE", 6) == 0) // Modula-2 "MODULE"
+        return LANG_MODULA2;
+      return NULL;
+    default:
+      return LANG_AMPL;
+    }
+  }
+  return NULL; // only blanks
 }
 
 #include <pcre.h>

@@ -7,12 +7,14 @@ const char *disambiguate_asx(SourceFile *sourcefile);
 const char *disambiguate_b(SourceFile *sourcefile);
 const char *disambiguate_basic(SourceFile *sourcefile);
 const char *disambiguate_cs(SourceFile *sourcefile);
+const char *disambiguate_dat(SourceFile *sourcefile);
 const char *disambiguate_def(SourceFile *sourcefile);
 const char *disambiguate_fortran(SourceFile *sourcefile);
 const char *disambiguate_h(SourceFile *sourcefile);
 const char *disambiguate_in(SourceFile *sourcefile);
 const char *disambiguate_inc(SourceFile *sourcefile);
 const char *disambiguate_m(SourceFile *sourcefile);
+const char *disambiguate_mod(SourceFile *sourcefile);
 const char *disambiguate_pl(SourceFile *sourcefile);
 const char *disambiguate_pp(SourceFile *sourcefile);
 const char *disambiguate_pro(SourceFile *sourcefile);
@@ -26,12 +28,14 @@ asx, disambiguate_asx
 b, disambiguate_b
 basic, disambiguate_basic
 cs, disambiguate_cs
+dat, disambiguate_dat
 def, disambiguate_def
 fortran, disambiguate_fortran
 h, disambiguate_h
 in, disambiguate_in
 inc, disambiguate_inc
 m, disambiguate_m
+mod, disambiguate_mod
 pl, disambiguate_pl
 pp, disambiguate_pp
 pro, disambiguate_pro
