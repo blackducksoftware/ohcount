@@ -196,7 +196,11 @@ void test_detector_brainfuck() {
 }
 
 void test_detector_emacs_mode() {
-	ASSERT_DETECT(LANG_C, "emacs_mode.c");
+	ASSERT_DETECT(LANG_C, "emacs_mode_c");
+}
+
+void test_detector_emacs_with_extension() {
+  ASSERT_DETECT(LANG_RUBY, "java_emac.rb");
 }
 
 void test_detector_puppet(){
@@ -230,6 +234,7 @@ void all_detector_tests() {
   test_detector_xml_with_custom_extension();
   test_detector_brainfuck();
   test_detector_emacs_mode();
+  test_detector_emacs_with_extension();
   test_detector_puppet();
   test_detector_genie();
   test_non_existent_file();
