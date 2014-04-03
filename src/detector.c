@@ -33,7 +33,7 @@ const char *magic_parse(char *line) {
 
   for (p = line; p < eol; p++) *p = tolower(*p);
   p = strstr(line, "script");
-  if (p && p == line) { // /^script text(?: executable)? for \w/
+  if (p && p == line) { // /^script (?: executable)? for \w/
     p = strstr(line, "for ");
     if (p) {
       p += 4;
@@ -45,7 +45,7 @@ const char *magic_parse(char *line) {
       struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
       if (rl) return(rl->name);
     }
-  } else if (p) { // /(\w+)(?: -\w+)* script text/
+  } else if (p) { // /(\w+)(?: -\w+)* script/
     do {
       p--;
       pe = p;
