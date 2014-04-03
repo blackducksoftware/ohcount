@@ -21,11 +21,6 @@
 #define ISAMBIGUOUS(x) (x[0] == '\2')
 #define DISAMBIGUATEWHAT(x) &x[1]
 
-#ifdef _WIN32
-# include <fcntl.h>
-# define mkstemp(p) _open(_mktemp(p), _O_CREAT | _O_SHORT_LIVED | _O_EXCL)
-#endif
-
 /* Parse the output of libmagic and return a language, if any.
  * The contents of string `line` will be destroyed.
  */
