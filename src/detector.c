@@ -21,11 +21,6 @@
 #define ISAMBIGUOUS(x) (x[0] == '\2')
 #define DISAMBIGUATEWHAT(x) &x[1]
 
-#ifdef _WIN32
-# include <fcntl.h>
-# define mkstemp(p) _open(_mktemp(p), _O_CREAT | _O_SHORT_LIVED | _O_EXCL)
-#endif
-
 /* Parse the output of libmagic and return a language, if any.
  * The contents of string `line` will be destroyed.
  */
@@ -37,8 +32,8 @@ const char *magic_parse(char *line) {
   size_t length;
 
   for (p = line; p < eol; p++) *p = tolower(*p);
-  p = strstr(line, "script text");
-  if (p && p == line) { // /^script text(?: executable)? for \w/
+  p = strstr(line, "script");
+  if (p && p == line) { // /^script (?: executable)? for \w/
     p = strstr(line, "for ");
     if (p) {
       p += 4;
@@ -50,7 +45,7 @@ const char *magic_parse(char *line) {
       struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
       if (rl) return(rl->name);
     }
-  } else if (p) { // /(\w+)(?: -\w+)* script text/
+  } else if (p) { // /(\w+)(?: -\w+)* script/
     do {
       p--;
       pe = p;
@@ -63,7 +58,11 @@ const char *magic_parse(char *line) {
     buf[length] = '\0';
     struct LanguageMap *rl = ohcount_hash_language_from_name(buf, length);
     if (rl) return(rl->name);
-  } else if (strstr(line, "xml")) return(LANG_XML);
+  } else if (strstr(line, "xml")) {
+    return(LANG_XML);
+  } else if (strstr(line, "html")) {
+    return(LANG_HTML);
+  }
 
   return NULL;
 }
