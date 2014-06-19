@@ -207,6 +207,7 @@ void test_detector_emacs_with_extension() {
 void test_detector_puppet(){
   ASSERT_DETECT(LANG_PUPPET, "puppet_import.pp");
   ASSERT_DETECT(LANG_PUPPET, "puppet_test.pp");
+  ASSERT_DETECT(LANG_PUPPET, "puppet_test2.pp");
 }
 
 void test_detector_genie(){
