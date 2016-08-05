@@ -19,6 +19,7 @@ const char *disambiguate_pro(SourceFile *sourcefile);
 const char *disambiguate_r(SourceFile *sourcefile);
 const char *disambiguate_rs(SourceFile *sourcefile);
 const char *disambiguate_st(SourceFile *sourcefile);
+const char *disambiguate_t(SourceFile *sourcefile);
 %}
 struct DisambiguateFuncsMap { const char *key; const char* (*value)(SourceFile*); };
 %%
@@ -39,3 +40,4 @@ pro, disambiguate_pro
 r, disambiguate_r
 rs, disambiguate_rs
 st, disambiguate_st
+t, disambiguate_t
