@@ -204,6 +204,7 @@ tgz, BINARY
 tif, BINARY
 tiff, BINARY
 tpl, LANG_HTML
+tt2, LANG_HTML
 vala, LANG_VALA
 vapi, LANG_VALA
 v, LANG_COQ
