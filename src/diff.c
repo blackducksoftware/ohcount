@@ -660,10 +660,10 @@ void ohcount_calc_diff_with_disk(
 		}
 	}
 	pclose(f);
-	if (unlink(from_tmp)) {
+	if (remove(from_tmp)) {
 		printf("error unlinking %s: %d", from_tmp, errno);
 	}
-	if (unlink(to_tmp)) {
+	if (remove(to_tmp)) {
 		printf("error unlinking %s: %d", from_tmp, errno);
 	}
 }
