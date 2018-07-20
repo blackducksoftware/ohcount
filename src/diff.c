@@ -634,6 +634,14 @@ char *tmp_file_from_buf(const char *buf) {
 	return path;
 }
 
+char *get_tmp_file() {
+	char *template = "/tmp/ohcount_diff_XXXXXXX";
+	char *path = strdup(template);
+	int fd = mkstemp(path);
+	close(fd);
+	return path;
+}
+
 #ifndef errno
 extern int errno;
 #endif
@@ -646,10 +654,12 @@ void ohcount_calc_diff_with_disk(
 	*added = *removed = 0;
 	char *from_tmp = tmp_file_from_buf(from);
 	char *to_tmp = tmp_file_from_buf(to);
+	char *redirect_path = get_tmp_file();
 
 	char command[1000];
-	sprintf(command, "diff -d --normal  --suppress-common-lines --new-file '%s' '%s'", from_tmp, to_tmp);
-	FILE *f = popen(command, "r");
+	sprintf(command, "diff -d --normal  --suppress-common-lines --new-file '%s' '%s' > '%s'", from_tmp, to_tmp, redirect_path);
+	int status = system(command);
+	FILE *f = fopen(redirect_path, "r");
 	if (f) {
 		char line[10000];
 		while(fgets(line, sizeof(line), f)) {
@@ -664,6 +674,9 @@ void ohcount_calc_diff_with_disk(
 		printf("error unlinking %s: %d", from_tmp, errno);
 	}
 	if (remove(to_tmp)) {
+		printf("error unlinking %s: %d", from_tmp, errno);
+	}
+	if (remove(redirect_path)) {
 		printf("error unlinking %s: %d", from_tmp, errno);
 	}
 }
