@@ -50,7 +50,7 @@ environments should also work, but your mileage may vary.
 
 Ohcount does not support Windows.
 
-Ohcount targets Ruby 2.2.3. The build script requires a bash shell. You
+Ohcount targets Ruby 2.3.0 The build script requires a bash shell. You
 also need a C compiler to build the native extensions.
 
 Source Code
@@ -63,14 +63,14 @@ Ohcount source code is available as a Git repository:
 Building Ohcount
 ----------------
 
-> Last updated: 2018-05-10
+> Last updated: 2018-095-01
 
 You will need ragel 6.8 or higher, bash, gperf, libpcre3-dev, libmagic-dev, gcc (version 4.8.2 or greater)
 and SWIG (2.0.11). To get these dependencies on Ubuntu/Debian you can run this command:
 
     sudo apt-get install libpcre3 libpcre3-dev libmagic-dev gperf gcc ragel swig
 
-There is a Ruby dependency of 'test-unit' gem for Ruby 2.2.3.  You will need to run this command:
+There is a Ruby dependency of 'test-unit' gem for Ruby 2.3.0.  You will need to run this command:
     
     gem install test-unit
 
