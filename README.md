@@ -63,7 +63,7 @@ Ohcount source code is available as a Git repository:
 Building Ohcount
 ----------------
 
-> Last updated: 2018-095-01
+> Last updated: 2018-09-01
 
 You will need ragel 6.8 or higher, bash, gperf, libpcre3-dev, libmagic-dev, gcc (version 4.8.2 or greater)
 and SWIG (2.0.11). To get these dependencies on Ubuntu/Debian you can run this command:
