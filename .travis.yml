@@ -1,0 +1,4 @@
+language: ruby
+install:
+  - sudo apt-get install libpcre3 libpcre3-dev libmagic-dev gperf gcc ragel swig
+  - gem install test-unit
