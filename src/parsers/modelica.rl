@@ -56,7 +56,7 @@ enum {
     )* :>> '*/';
 
   modelica_comment = modelica_line_comment | modelica_block_comment;
-  identifier = '\'' (([^'] - ws + ' ')*|'\\\'') '\'' @code;
+  identifier = (alpha | '_') (alnum | '_')*;
   string = '\"' @code
     (newline %{ entity = INTERNAL_NL; } %modelica_ccallback
     |ws
