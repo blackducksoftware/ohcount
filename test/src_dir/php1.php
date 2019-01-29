@@ -22,7 +22,7 @@
 	</tr>
 	</table>
 
-<?
+<?php
 ## Comment with a hash symbol ##
 	mysql_connect("localhost", "db user", "db pass")
 	or die("DB CONNECT ERROR: " . mysql_error());

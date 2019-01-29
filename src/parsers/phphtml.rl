@@ -124,7 +124,7 @@ enum {
   phtml_php_entry = ('<?' 'php'?) @code;
   phtml_php_outry = '?>' @check_blank_outry @code;
   phtml_php_line := |*
-    phtml_php_outry @{ p = ts; fret; };
+    phtml_php_outry ${ p = ts; fret; };
     # unmodified PHP patterns
     spaces       ${ entity = PHP_SPACE; } => php_ccallback;
     php_comment;
@@ -138,7 +138,7 @@ enum {
       @{ saw(CSS_LANG); } => { fcall phtml_css_line; };
     phtml_js_entry @{ entity = CHECK_BLANK_ENTRY; } @phtml_ccallback
       @{ saw(JS_LANG); } => { fcall phtml_js_line; };
-    phtml_php_entry @{ entity = CHECK_BLANK_ENTRY; } @phtml_ccallback
+    phtml_php_entry @{ entity = CHECK_BLANK_ENTRY; } @php_ccallback
       @{ saw(PHP_LANG); } => { fcall phtml_php_line; };
     # standard PHTML patterns
     spaces       ${ entity = PHTML_SPACE; } => phtml_ccallback;

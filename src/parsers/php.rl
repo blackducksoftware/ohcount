@@ -41,6 +41,10 @@ enum {
       break;
     case NEWLINE:
       std_newline(PHP_LANG)
+      break;
+    case CHECK_BLANK_ENTRY:
+      check_blank_entry(PHP_LANG)
+      break;
     }
   }
 

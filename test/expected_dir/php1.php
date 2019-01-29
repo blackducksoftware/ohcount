@@ -22,7 +22,7 @@ html	code		<td>Email<td>
 html	code		</tr>
 html	code		</table>
 html	blank	
-html	code	<?
+php	code	<?php
 php	comment	## Comment with a hash symbol ##
 php	code		mysql_connect("localhost", "db user", "db pass")
 php	code		or die("DB CONNECT ERROR: " . mysql_error());
@@ -42,7 +42,7 @@ php	code			$fname = $row['fname'];
 php	code			$email = $row['email'];
 php	blank	
 php	comment			// Spaghetti code starts....(slopping html code in)
-html	code	?>
+php	code	>
 html	blank	
 html	code		<tr bgColor=white>
 php	code		<td><?=$fname?></td>
@@ -51,9 +51,9 @@ php	code		<td><?=$email?><td>
 html	code		</tr>
 html	code		</table>
 html	blank	
-html	code	<?
+php	code	<?
 php	code		} // end while
 php	comment		// Spaghetti code is both a source of praise and complaints
-html	code	?>
+php	code	>
 html	blank	
 html	code	</body>
