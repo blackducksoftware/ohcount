@@ -126,6 +126,6 @@
 
 // For gperf.
 struct LanguageMap { const char *key; const char *name; const char *nice_name; int category; };
-struct LanguageMap *ohcount_hash_language_from_name(register const char *str, register size_t len);
+struct LanguageMap *ohcount_hash_language_from_name(register const char *str, register unsigned int len);
 
 #endif
