@@ -148,6 +148,8 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_EC, "foo.eh");
   ASSERT_DETECT(LANG_EBUILD, "foo.ebuild");
   ASSERT_DETECT(LANG_EBUILD, "foo.eclass");
+  ASSERT_DETECT(LANG_ELIXIR, "foo.ex");
+  ASSERT_DETECT(LANG_ELIXIR, "foo.exs");
   ASSERT_DETECT(LANG_EXHERES, "foo.exheres-0");
   ASSERT_DETECT(LANG_EXHERES, "foo.exlib");
   ASSERT_DETECT(LANG_EIFFEL, "eiffel.e");

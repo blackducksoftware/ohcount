@@ -104,6 +104,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_ebuild.h"
 #include "parsers/test_eiffel.h"
 #include "parsers/test_emacs_lisp.h"
+#include "parsers/test_elixir.h"
 #include "parsers/test_erlang.h"
 #include "parsers/test_exheres.h"
 #include "parsers/test_factor.h"

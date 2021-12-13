@@ -29,6 +29,7 @@
 #include "../parsers/dylan.h"
 #include "../parsers/ebuild.h"
 #include "../parsers/eiffel.h"
+#include "../parsers/elixir.h"
 #include "../parsers/erlang.h"
 #include "../parsers/exheres.h"
 #include "../parsers/factor.h"
@@ -144,6 +145,7 @@ dylan, parse_dylan
 ebuild, parse_ebuild
 ec, parse_ec
 eiffel, parse_eiffel
+elixir, parse_elixir
 erlang, parse_erlang
 exheres, parse_exheres
 emacslisp, parse_emacslisp
