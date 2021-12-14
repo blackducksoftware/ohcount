@@ -63,6 +63,7 @@
 #define LANG_JAVA "java"
 #define LANG_JAVASCRIPT "javascript"
 #define LANG_JSP "jsp"
+#define LANG_JULIA "julia"
 #define LANG_KOTLIN "kotlin"
 #define LANG_LIMBO "limbo"
 #define LANG_LISP "lisp"

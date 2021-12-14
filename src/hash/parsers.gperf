@@ -49,6 +49,7 @@
 #include "../parsers/java.h"
 #include "../parsers/javascript.h"
 #include "../parsers/jsp.h"
+#include "../parsers/julia.h"
 #include "../parsers/kotlin.h"
 #include "../parsers/lisp.h"
 #include "../parsers/limbo.h"
@@ -166,6 +167,7 @@ jam, parse_jam
 java, parse_java
 javascript, parse_javascript
 jsp, parse_jsp
+julia, parse_julia
 kotlin, parse_kotlin
 lisp, parse_lisp
 limbo, parse_limbo
