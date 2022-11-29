@@ -1,0 +1,24 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+    - name: Install dependencies
+      run: |
+        sudo apt-get install libpcre3 libpcre3-dev libmagic-dev gperf gcc ragel swig
+        gem install test-unit
+    - name: Run tests
+      run: '${{github.workspace}}/build tests'
