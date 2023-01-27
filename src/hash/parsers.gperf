@@ -97,6 +97,7 @@
 #include "../parsers/tcl.h"
 #include "../parsers/tex.h"
 #include "../parsers/tex_dtx.h"
+#include "../parsers/umple.h"
 #include "../parsers/unrealscript.h"
 #include "../parsers/vb_aspx.h"
 #include "../parsers/vhdl.h"
@@ -218,6 +219,7 @@ swift, parse_swift
 tcl, parse_tcl
 tex, parse_tex
 tex_dtx, parse_tex_dtx
+umple, parse_umple
 unrealscript, parse_unrealscript
 typescript, parse_typescript
 vala, parse_vala

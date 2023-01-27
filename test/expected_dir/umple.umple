@@ -1,0 +1,61 @@
+umple	comment	/*
+umple	comment	  Below is a very simple Umple file demonstrating basic features
+umple	comment	  You can use this to start experimenting with Umple
+umple	comment	*/
+umple	blank	
+umple	code	class A {
+umple	code	  name;
+umple	code	  Integer i = 1;
+umple	code	}
+umple	blank	
+umple	code	class B {
+umple	code	  isA A;
+umple	code	}
+umple	blank	
+umple	code	class C {
+umple	comment	  // Integer z will be given a number at construction that cannot change
+umple	code	  autounique z;
+umple	blank	
+umple	comment	  // The following indicates that a C has some associated B's
+umple	code	  1 -- * B;
+umple	code	}
+umple	blank	
+umple	code	class D{
+umple	code	  singleton;
+umple	blank	
+umple	code	  lazy String id;
+umple	code	  lazy Date someDate;
+umple	code	  lazy Boolean whetherTrueOrFalse;
+umple	code	}
+umple	blank	
+umple	comment	// Associations can be defined in a class or separately as is done here
+umple	code	association {
+umple	code	   0..1 D theD --
+umple	code	   1..* A theA;
+umple	code	}
+umple	blank	
+umple	code	class B {
+umple	code	  immutable Integer anotherAttribute;
+umple	blank	
+umple	code	  0..1 -- 0..1 D;
+umple	blank	
+umple	code	  height {
+umple	code	    high {
+umple	code	      goDown -> medium;
+umple	code	    }
+umple	blank	
+umple	code	    medium
+umple	code	    {
+umple	code	      entry / {setI(getI()+1);}
+umple	code	      goUp -> high;
+umple	code	      goDown ->/{setI(getI()-10);} low;
+umple	blank	
+umple	code	    }
+umple	code	    low { goUp -> medium; }
+umple	code	  }
+umple	blank	
+umple	code	  public Integer timesTen()
+umple	code	  {
+umple	code	     return (anotherAttribute*10);
+umple	code	  }
+umple	code	}

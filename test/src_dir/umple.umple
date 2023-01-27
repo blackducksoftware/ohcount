@@ -1,0 +1,61 @@
+/*
+  Below is a very simple Umple file demonstrating basic features
+  You can use this to start experimenting with Umple
+*/
+
+class A {
+  name;
+  Integer i = 1;
+}
+
+class B {
+  isA A;
+}
+
+class C {
+  // Integer z will be given a number at construction that cannot change
+  autounique z;
+
+  // The following indicates that a C has some associated B's
+  1 -- * B;
+}
+
+class D{
+  singleton;
+
+  lazy String id;
+  lazy Date someDate;
+  lazy Boolean whetherTrueOrFalse;
+}
+
+// Associations can be defined in a class or separately as is done here
+association {
+   0..1 D theD --
+   1..* A theA;
+}
+
+class B {
+  immutable Integer anotherAttribute;
+
+  0..1 -- 0..1 D;
+
+  height {
+    high {
+      goDown -> medium;
+    }
+
+    medium
+    {
+      entry / {setI(getI()+1);}
+      goUp -> high;
+      goDown ->/{setI(getI()-10);} low;
+
+    }
+    low { goUp -> medium; }
+  }
+
+  public Integer timesTen()
+  {
+     return (anotherAttribute*10);
+  }
+}

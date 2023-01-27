@@ -114,6 +114,7 @@
 #define LANG_TCL "tcl"
 #define LANG_TEX "tex"
 #define LANG_TEX_DTX "tex_dtx"
+#define LANG_UMPLE "umple"
 #define LANG_UNREALSCRIPT "unrealscript"
 #define LANG_TYPESCRIPT "typescript"
 #define LANG_VALA "vala"

@@ -178,6 +178,7 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_LIVECODE, "script.utf8");
   ASSERT_DETECT(LANG_POSTSCRIPT, "foo.ps");
   ASSERT_DETECT(LANG_SWIFT, "foo.swift");
+  ASSERT_DETECT(LANG_UMPLE, "foo.umple");
   ASSERT_NODETECT("empty.inc");
 }
 

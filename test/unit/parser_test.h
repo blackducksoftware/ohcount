@@ -160,6 +160,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_swift.h"
 #include "parsers/test_tcl.h"
 #include "parsers/test_tex.h"
+#include "parsers/test_umple.h"
 #include "parsers/test_unrealscript.h"
 #include "parsers/test_typescript.h"
 #include "parsers/test_vala.h"
@@ -350,6 +351,7 @@ void all_parser_tests() {
   all_swift_tests();
   all_tcl_tests();
   all_tex_tests();
+  all_umple_tests();
   all_unrealscript_tests();
   all_vala_tests();
   all_vb_aspx_tests();
