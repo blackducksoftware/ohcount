@@ -103,6 +103,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_dylan.h"
 #include "parsers/test_ebuild.h"
 #include "parsers/test_eiffel.h"
+#include "parsers/test_elm.h"
 #include "parsers/test_emacs_lisp.h"
 #include "parsers/test_erlang.h"
 #include "parsers/test_exheres.h"
@@ -297,6 +298,7 @@ void all_parser_tests() {
   all_dylan_tests();
   all_ebuild_tests();
   all_eiffel_tests();
+  all_elm_tests();
   all_emacs_lisp_tests();
   all_erlang_tests();
   all_exheres_tests();

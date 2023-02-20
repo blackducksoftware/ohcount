@@ -41,6 +41,7 @@
 #define LANG_EBUILD "ebuild"
 #define LANG_EC "ec"
 #define LANG_EIFFEL "eiffel"
+#define LANG_ELM "elm"
 #define LANG_ERLANG "erlang"
 #define LANG_EXHERES "exheres"
 #define LANG_EMACSLISP "emacslisp"

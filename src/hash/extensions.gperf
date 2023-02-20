@@ -64,6 +64,7 @@ ec, LANG_EC
 eclass, LANG_EBUILD
 eh, LANG_EC
 el, LANG_EMACSLISP
+elm, LANG_ELM
 erl, LANG_ERLANG
 exheres-0, LANG_EXHERES
 exlib, LANG_EXHERES

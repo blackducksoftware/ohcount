@@ -40,6 +40,7 @@ dylan, LANG_DYLAN, "Dylan", 0
 ebuild, LANG_EBUILD, "Ebuild", 0
 ec, LANG_EC, "eC", 0
 eiffel, LANG_EIFFEL, "Eiffel", 0
+elm, LANG_ELM, "Elm", 0
 emacslisp, LANG_EMACSLISP, "Emacs lisp", 0
 erlang, LANG_ERLANG, "Erlang", 0
 exheres, LANG_EXHERES, "Exheres", 0

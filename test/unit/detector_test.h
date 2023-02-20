@@ -151,6 +151,7 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_EXHERES, "foo.exheres-0");
   ASSERT_DETECT(LANG_EXHERES, "foo.exlib");
   ASSERT_DETECT(LANG_EIFFEL, "eiffel.e");
+  ASSERT_DETECT(LANG_ELM, "foo.elm");
   ASSERT_DETECT(LANG_OCAML, "ocaml.ml");
   ASSERT_DETECT(LANG_AUGEAS, "augeas.aug");
   ASSERT_DETECT(LANG_STRATEGO, "stratego.str");
