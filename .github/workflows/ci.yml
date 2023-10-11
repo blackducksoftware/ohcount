@@ -6,11 +6,11 @@ on:
       - opened
       - synchronize
   push:
-    branches: [main]
+    branches: [fix_ci_pipeline]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
