@@ -122,6 +122,7 @@ void test_parser_verify_entity(SourceFile *sf, const char *entity,
 #include "parsers/test_jam.h"
 #include "parsers/test_java.h"
 #include "parsers/test_javascript.h"
+#include "parsers/test_julia.h"
 #include "parsers/test_jsp.h"
 #include "parsers/test_lisp.h"
 #include "parsers/test_livecode.h"
@@ -317,6 +318,7 @@ void all_parser_tests() {
   all_jam_tests();
   all_java_tests();
   all_javascript_tests();
+  all_julia_tests();
   all_jsp_tests();
   all_lisp_tests();
   all_livecode_tests();

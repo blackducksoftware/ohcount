@@ -124,6 +124,7 @@ void test_detector_detect_polyglot() {
   ASSERT_DETECT(LANG_CPP, "uses_cpp_headers.h");
   ASSERT_DETECT(LANG_CPP, "uses_cpp_stdlib_headers.h");
   ASSERT_DETECT(LANG_CPP, "uses_cpp_keywords.h");
+  ASSERT_DETECT(LANG_JULIA, "foo.jl");
   ASSERT_DETECT(LANG_RUBY, "foo.rb");
   ASSERT_DETECT(LANG_CRYSTAL, "foo.cr");
   ASSERT_DETECT(LANG_MAKE, "foo.mk");
