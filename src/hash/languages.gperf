@@ -62,6 +62,7 @@ idl_pvwave, LANG_IDL_PVWAVE, "IDL/PV-WAVE/GDL", 0
 jam, LANG_JAM, "Jam", 2
 java, LANG_JAVA, "Java", 0
 javascript, LANG_JAVASCRIPT, "JavaScript", 0
+julia, LANG_JULIA, "Julia", 0
 jsp, LANG_JSP, "", 0
 kotlin, LANG_KOTLIN, "Kotlin", 0
 limbo, LANG_LIMBO, "Limbo", 0

@@ -49,6 +49,7 @@
 #include "../parsers/jam.h"
 #include "../parsers/java.h"
 #include "../parsers/javascript.h"
+#include "../parsers/julia.h"
 #include "../parsers/jsp.h"
 #include "../parsers/kotlin.h"
 #include "../parsers/lisp.h"
@@ -169,6 +170,7 @@ idl_pvwave, parse_idl_pvwave
 jam, parse_jam
 java, parse_java
 javascript, parse_javascript
+julia, parse_julia
 jsp, parse_jsp
 kotlin, parse_kotlin
 lisp, parse_lisp
