@@ -12,7 +12,7 @@ RUN git clone https://github.com/rbenv/rbenv.git $RBENV_PATH \
   && echo 'export PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:/usr/local/rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc \
   && echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
   && . ~/.bashrc \
-  && rbenv install 2.6.9 && rbenv global 2.6.9 \
+  && rbenv install 3.1.7 && rbenv global 3.1.7 \
   && rbenv rehash
 
 RUN mkdir -p $APP_HOME
