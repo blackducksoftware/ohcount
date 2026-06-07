@@ -118,7 +118,7 @@
       fnames[i] = StringValuePtr(*iter);
     self->filenames = fnames;
   }
-  SourceFile(const char *filepath, VALUE opt_hash=NULL) {
+  SourceFile(const char *filepath, VALUE opt_hash=0) {
     SourceFile *sourcefile = ohcount_sourcefile_new(filepath);
     if (opt_hash) {
       VALUE val;
@@ -222,7 +222,7 @@
       ohcount_sourcefile_list_add_file(list, StringValuePtr(file));
     return Qnil;
   }
-  SourceFileListItem(VALUE opt_hash=NULL) {
+  SourceFileListItem(VALUE opt_hash=0) {
     SourceFileList *list = ohcount_sourcefile_list_new();
     if (opt_hash) {
       VALUE val;
